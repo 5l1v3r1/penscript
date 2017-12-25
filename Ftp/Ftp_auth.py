@@ -5,13 +5,13 @@ __author__ = 'orleven'
     Ftp 匿名、弱口令爆破
 '''
 
-
+import socket
 import ftplib
 import optparse
 import threading
 
 targetList = [
-"127.0.0.1",
+    "127.0.0.1",
 ]
 userpwdList = [
     "admin:123456",
@@ -43,6 +43,7 @@ userpwdList = [
 ]
 threadList = []
 threadNum = 10
+timeout=5
 
 def _bruteLogin(hostname):
     flag = False
@@ -68,6 +69,7 @@ def bruteLogin(threadId):
         
 def scan():
     print "[.] Run start: Total " + str(len(targetList)) + " hosts!"+ "\r\n",
+    socket.setdefaulttimeout(timeout)
     for threadId in xrange(0,threadNum):
         t = threading.Thread(target=bruteLogin,args=(threadId,))
         t.start()
