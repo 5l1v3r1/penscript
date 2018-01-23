@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///C:/Soft/nmap-7.50/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.50 scan initiated Tue Jan 23 21:27:31 2018 as: nmap -T4 -p- -v -oX res.xml 192.168.111.173 192.168.111.131 -->
+<nmaprun scanner="nmap" args="nmap -T4 -p- -v -oX res.xml 192.168.111.173 192.168.111.131" start="1516714051" startstr="Tue Jan 23 21:27:31 2018" version="7.50" xmloutputversion="1.04">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="1"/>
+<debugging level="0"/>
+<taskbegin task="ARP Ping Scan" time="1516714055"/>
+<taskend task="ARP Ping Scan" time="1516714056" extrainfo="2 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 2 hosts." time="1516714067"/>
+<taskend task="Parallel DNS resolution of 2 hosts." time="1516714073"/>
+<taskbegin task="SYN Stealth Scan" time="1516714073"/>
+<taskend task="SYN Stealth Scan" time="1516714129" extrainfo="131070 total ports"/>
+<host starttime="1516714055" endtime="1516714129"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.111.173" addrtype="ipv4"/>
+<address addr="00:0C:29:D0:84:FC" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65520">
+<extrareasons reason="resets" count="65520"/>
+</extraports>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1025"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="NFS-or-IIS" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1026"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="LSA-or-nterm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1027"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="IIS" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1028"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1029"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ms-lsa" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1030"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="iad1" method="table" conf="3"/></port>
+<port protocol="tcp" portid="2869"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="icslap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5357"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="wsdapi" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5938"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="teamviewer" method="table" conf="3"/></port>
+<port protocol="tcp" portid="10243"><state state="open" reason="syn-ack" reason_ttl="128"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<times srtt="10" rttvar="22" to="100000"/>
+</host>
+<host starttime="1516714055" endtime="1516714075"><status state="up" reason="arp-response" reason_ttl="0"/>
+<address addr="192.168.111.131" addrtype="ipv4"/>
+<address addr="00:0C:29:4E:31:EE" addrtype="mac" vendor="VMware"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="resets" count="65533"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="23" rttvar="48" to="100000"/>
+</host>
+<runstats><finished time="1516714129" timestr="Tue Jan 23 21:28:49 2018" elapsed="78.18" summary="Nmap done at Tue Jan 23 21:28:49 2018; 2 IP addresses (2 hosts up) scanned in 78.18 seconds" exit="success"/><hosts up="2" down="0" total="2"/>
+</runstats>
+</nmaprun>

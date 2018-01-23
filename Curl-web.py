@@ -18,10 +18,39 @@ from bs4 import BeautifulSoup
 
 
 targetList = [
-    "localhost:80",
-    "localhost:81",
-    "localhost:8080",
-]
+"134.96.233.145:9014/status",
+"134.96.233.146:9014/status",
+"134.96.233.145:8002/status",
+"134.96.233.145:9101/status",
+"134.96.233.145:8004/status",
+"134.96.233.145:9100/status",
+"134.96.233.145:9000/status",
+"134.96.233.145:8000/status",
+"134.96.233.145:9108/status",
+"134.96.233.145:9106/status",
+"134.96.233.145:9109/status",
+"134.96.233.145:9105/status",
+"134.96.233.145:9103/status",
+"134.96.233.146:9000/status",
+"134.96.233.146:8004/status",
+"134.96.233.146:8002/status",
+"134.96.233.146:8000/status",
+"134.96.233.146:9108/status",
+"134.96.233.146:9100/status",
+"134.96.233.146:9105/status",
+"134.96.233.146:9106/status",
+"134.96.233.146:9103/status",
+"134.96.233.146:9109/status",
+"134.96.233.146:9101/status",
+"134.96.233.145:9107/status",
+"134.96.233.146:9107/status",
+"134.96.233.145:9104/status",
+"134.96.233.145:9102/status",
+"134.96.233.146:9104/status",
+"134.96.233.146:9102/status",
+"134.96.233.145:22350/status",
+"134.96.233.146:22350/status",
+"134.96.233.146:8004/stattus",]
 
 
 key = "title"
@@ -35,14 +64,12 @@ def _curl(protocol,target):
     dic['host'] = target.split(':')[0]
     url = protocol + "://" +target
     try:
-        
-        result = requests.get(url, timeout=int(timeout))
+        result = requests.get(url, timeout=int(timeout),verify=False)
         soup = BeautifulSoup(result.text)
         dic['target'] = url
         dic['status'] = str(result.status_code)
         dic['flag'] = True
         dic['host'] = target
-
         if soup.title == None or soup.title.string ==None or soup.title.string =='':
             dic['title'] = "None Title"
         else:
