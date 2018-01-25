@@ -18,20 +18,22 @@ from bs4 import BeautifulSoup
 
 
 targetList = [
+"http://example.com",
 "https://www.seebug.org/",
 "https://www.baidu.com/",
+"http://example.com",
+"http://example.com",
 "http://example.com",
 ]
 
 
-key = "title"
-timeout = 3
+
 resultDic = {}
 threadList = []
-threadNum = 10
-
-def _curl(target):
+resultList = []
+def _curl(target,i,timeout=3):
     dic = {}
+    dic['id'] = str(i) 
     dic['host'] = target.split(':')[0].strip('https://').strip('http://')
     url = target
     try:
@@ -57,60 +59,80 @@ def _curl(target):
         result1 = requests.options(url+"/testbyah", timeout=int(timeout))
         dic['head_allow'] = result1.headers['Allow']
     except:
-        dic['head_allow'] = "Curl Failed"
+        dic['head_allow'] = "Not Allow"
 
         
     return dic
 
-def curl(threadId):
+def curl(threadId,timeout,threadNum):
     for i in xrange(threadId,len(targetList),threadNum):
-        dic = _curl(targetList[i])
-        if not resultDic.has_key(dic.get(key)):
-            resultDic[dic.get(key)] = []
-        resultDic[dic.get(key)].append(dic)
+        dic = _curl(targetList[i],i,timeout)
+        resultList.append(dic)
 
-
-def scan():
+def scan(threadNum,timeout):
     print "Run start: Total " + str(len(targetList)) + " request!"
     for threadId in xrange(0,threadNum):
-        t = threading.Thread(target=curl,args=(threadId,))
+        t = threading.Thread(target=curl,args=(threadId,timeout,threadNum,))
         t.start()
         threadList.append(t)
     for num in xrange(0,threadNum):
         threadList[num].join()
-    print "\r\nRun over !"
+    print "Run over!"
 
-def printlog():
-    for key in resultDic:
-        print "["+key+"]"
-        for result in resultDic[key]:
-            print result['target'] + "  - " + result['status'] + "  - " + result['head_allow']
-        print "\r\n"
+def printlog(key,out):
+    print "Start to output!"
+    resList =  sorted(resultList,key = lambda e:e.__getitem__(key))
+    temp = "NoNasdon!asd32@NoneNone"
+    if out!=None:
+        with open(out,'wb') as f :
+            for value in resList:
+                if temp != value[key] and key != 'id' :
+                    try:
+                        f.write( "\r\n["+value[key]+"]\r\n")
+                    except:
+                        f.write("\r\n[GBK Code Error]\r\n")
+                f.write(value['target'] + "  - " + value['status'] + "  - " + value['head_allow']+'\r\n')
+                temp = value[key]
+        print "Save result into "+ out
+    else:
+        for value in resList:
+            if temp != value[key] and key != 'id' :
+                try:
+                    print "\r\n["+value[key]+"]"
+                except:
+                    print "\r\n[GBK Code Error]"
+            print value['target'] + "  - " + value['status'] + "  - " + value['head_allow']
+            temp = value[key]
+    print "\r\nEnd output!"
 
 def argSet(parser):
-    parser.add_argument("-K", "--key", type=str, help="The order key e.g. titile、status、host", default="title")
+    parser.add_argument("-K", "--key", type=str, help="The order key e.g. title、status、host", default="title")
     parser.add_argument("-T", "--timeout", type=str, help="Timeout", default="3")
-    parser.add_argument("-F", "--file",type=str, help="Load ip dictionary e.g. 192.168.1.2:8080", default=None)
+    parser.add_argument("-F", "--file",type=str, help="Load ip dictionary e.g. http://192.168.1.2:8080", default=None)
+    parser.add_argument("-O", "--out",type=str, help="output file e.g res.txt", default=None)
+    parser.add_argument("-N", "--threadnum",type=int, help="Thread Num e.g. 10", default=10)
     return parser
 
 
 def handle(args):
     key = args.key
     timeout = args.timeout
-    file = args.file
-    if key not in ['titile','status','host','head_allow']:
+    filename = args.file
+    out = args.out
+    threadnum = args.threadnum
+    if key not in ['title','status','host','head_allow','id']:
         key = 'title'
 
-    if file != None:
-        if os.path.isfile(file):
-            with open(file, 'r') as f:
+    if filename != None:
+        if os.path.isfile(filename):
+            with open(filename, 'r') as f:
                 for line in f.readlines():
                     myline = line.strip('\r').strip('\n')
                     targetList.append(myline)
         else:
             print "The path is not exist!"
-    scan()
-    printlog()
+    scan(threadnum,timeout)
+    printlog(key,out)
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)

