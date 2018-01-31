@@ -1,6 +1,0 @@
-https://www.seebug.org/  - 521  - Not Allow
-https://www.baidu.com/  - 200  - GET,HEAD,POST,OPTIONS,TRACE
-http://example.com  - 200  - OPTIONS, GET, HEAD, POST
-https://www.seebug.org/  - 521  - Not Allow
-https://www.baidu.com/  - 200  - GET,HEAD,POST,OPTIONS,TRACE
-http://example.com  - 200  - OPTIONS, GET, HEAD, POST
