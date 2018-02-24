@@ -98,7 +98,7 @@ def main():
       threadList.append(t)
    for num in xrange(0,threadNum):
       threadList[num].join()
-   print "[+] Run over !"
+   print "[.] Run over !"
 
       
 if __name__ == '__main__':

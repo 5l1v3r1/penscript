@@ -10,8 +10,10 @@ import re
 '''
     处理nmap扫描结果
     用法：
-        python nmap-deal.py -F text.txt -V -O res.txt
-        python nmap-deal.py -F text.txt -X -O res.txt
+        python nmap-deal.py -F test.txt -V -O res.txt
+        python nmap-deal.py -F test.txt -X -O res.tx
+
+    test.txt 是 Nmap scan report for至Nmap done为止的内容。
 
 '''
 
@@ -66,11 +68,13 @@ def deal(filename,xml):
                         if flag or 'Nmap done'  in text :
                             resDic = {"host":host,"info":infoLit}
                             resLit.append(resDic)
-                        else:
-                            pass
                         infoLit = []
                         host =  lit[0]
                         flag = True
+                        print host
+                    else:
+                        resDic = {"host":host,"info":infoLit}
+                        resLit.append(resDic)
                 else:
                     lit =  re.findall(r'(?:^(?:\d)+)(?:/)(?:[\s\S]*)',text)
                     if len(lit)>0:

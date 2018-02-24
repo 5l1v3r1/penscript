@@ -11,7 +11,7 @@ import optparse
 import threading
 
 targetList = [
-"127.0.0.1",
+
 
 
 ]

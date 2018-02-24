@@ -18,12 +18,7 @@ from bs4 import BeautifulSoup
 
 
 targetList = [
-"http://example.com",
-"https://www.seebug.org/",
-"https://www.baidu.com/",
-"http://example.com",
-"http://example.com",
-"http://example.com",
+
 ]
 
 
