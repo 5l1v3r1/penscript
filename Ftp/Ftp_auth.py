@@ -12,8 +12,6 @@ import threading
 
 targetList = [
 
-
-
 ]
 userpwdList = [
     "admin:123456",

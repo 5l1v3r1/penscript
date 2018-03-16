@@ -65,7 +65,6 @@ def main():
         }
         targetsList.append(targetDic)
 
-    # print targetsList
     print "Run start !"
     for threadId in xrange(0,threadNum):
         t = threading.Thread(target=exploit_redis,args=(threadId,))

@@ -22,7 +22,6 @@ targetList = [
 ]
 
 
-
 resultDic = {}
 threadList = []
 resultList = []
@@ -49,7 +48,9 @@ def _curl(target,i,timeout=3):
         dic['target'] = target
         dic['host'] = target
         dic['flag'] = False
-  
+
+    url = target
+
     try:
         result1 = requests.options(url+"/testbyah", timeout=int(timeout))
         dic['head_allow'] = result1.headers['Allow']

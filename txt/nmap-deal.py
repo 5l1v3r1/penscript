@@ -71,7 +71,7 @@ def deal(filename,xml):
                         infoLit = []
                         host =  lit[0]
                         flag = True
-                        print host
+                        #print host
                     else:
                         resDic = {"host":host,"info":infoLit}
                         resLit.append(resDic)

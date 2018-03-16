@@ -15,7 +15,6 @@ threadList = []
 resultList = []
 targetList = [
 
-
 ]
 vulList = [
    {

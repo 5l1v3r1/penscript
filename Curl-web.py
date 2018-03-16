@@ -18,7 +18,6 @@ from bs4 import BeautifulSoup
 
 
 targetList = [
-"127.0.0.1:8080",
 
 ]
 
@@ -50,7 +49,7 @@ def _curl(protocol,target,i,timeout=3):
         dic['target'] = target
         dic['host'] = target
         dic['flag'] = False
-  
+    url = target
     try:
         result1 = requests.options(url+"/testbyah", timeout=int(timeout))
         dic['head_allow'] = result1.headers['Allow']
@@ -63,6 +62,8 @@ def _curl(protocol,target,i,timeout=3):
 def curl(threadId,timeout,threadNum):
     for i in xrange(threadId,len(targetList),threadNum):
         dic = _curl('http',targetList[i],i,timeout)
+        if not dic['flag'] :
+            dic = _curl('https',targetList[i],i,timeout)
         resultList.append(dic)
         
 def scan(threadNum,timeout):

