@@ -13,14 +13,12 @@ import sys
 
 threadList = []
 resultList = []
-targetList = [
-
-]
+targetList = []
 vulList = [
    {
-      "vul":"Test",
-      "key":"just for test!\r\n\r\n",
-      "flag":"just for test!",
+      "vul":"Memcache access vul",
+      "key":"stats\r\n\r\nquit\r\n",
+      "flag":"STAT",
    },
    {
       "vul":"Dubbo access vul",
@@ -49,9 +47,11 @@ def socketscan(target,i,timeout=5):
        try:
            s.sendall(vul['key'])
            message = s.recv(1024)
+           #print message
            dic['message'] = message[0:100] + '\r\n'
            if vul['flag'] in message:
               dic['vul'] = vul['vul']
+              print target
               return dic
        except socket.timeout:
            pass
@@ -113,7 +113,7 @@ def argSet(parser):
     parser.add_argument("-K", "--key", type=str, help="The order key e.g. vul、id、host", default="title")
     parser.add_argument("-F", "--file",type=str, help="Load ip dictionary e.g. 192.168.1.2:8080", default=None)
     parser.add_argument("-O", "--out",type=str, help="output file e.g res.txt", default=None)
-    parser.add_argument("-N", "--threadnum",type=int, help="Thread Num e.g. 10", default=10)
+    parser.add_argument("-N", "--threadnum",type=int, help="Thread Num e.g. 10", default=400)
     return parser
 
 def handle(args):
