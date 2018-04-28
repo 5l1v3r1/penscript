@@ -10,9 +10,7 @@ import ftplib
 import optparse
 import threading
 
-targetList = [
-
-]
+targetList = []
 userpwdList = [
     "admin:123456",
     "admin:1234567890",
@@ -30,6 +28,7 @@ userpwdList = [
     "root:1qaz2wsx",
     "root:2wsx3edc",
     "root:admin",
+    "root:admin12345",
     "root:root",
     "root:root123456",
     "root:toor",
@@ -40,6 +39,10 @@ userpwdList = [
     "spark:spark",
     "spark:admin",
     "anonymous:test@orleven.com",
+    "jtky:65326852",
+    "jtky:123456",
+    "jtky:888888",
+    "admin:888888",
 ]
 threadList = []
 threadNum = 10
