@@ -102,6 +102,7 @@ def socketscan(target,i,timeout=5,verbose=False):
                pass
             except Exception as err:
                pass
+            s.close()
     return dic
 
 def _scan(threadId,timeout,threadNum,verbose):
