@@ -24,6 +24,7 @@ type=sys.getfilesystemencoding()
         www.baidu.com
         192.168.1.11
         192.168.1.22:80
+        192.168.1.22:80/admin
 
 '''
 #sysstr = platform.system() 
@@ -78,8 +79,10 @@ def curl(threadId,timeout,threadNum,verbose,searchList):
             dic = _curl('https',targetList[i],i,timeout,searchList)
         resultList.append(dic)
         if verbose and  dic['status'] !="0" :
-            print "[%s] %s - %s - %s - %s\r\n" % (dic['id'],dic['target'],dic['status'],dic['title'].decode('utf-8').encode(type),','.join(dic['search'])),
-    
+            try:
+                print "[%s] %s - %s - %s - %s\r\n" % (dic['id'],dic['target'],dic['status'],dic['title'].decode('utf-8').encode(type),','.join(dic['search'])),
+            except:
+                print "[%s] %s - %s - %s - %s\r\n" % (dic['id'],dic['target'],dic['status'],"Title Code Error",','.join(dic['search'])),
 def scan(threadNum,timeout,verbose,searchList):
     print "[.] Run start: Total " + str(len(targetList)) + " request!"
     for threadId in xrange(0,threadNum):
