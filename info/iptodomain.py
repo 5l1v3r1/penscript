@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 '''
 
 targetList = [
-"218.20.227.30",
+"111.198.162.44",
 ]
 
 resultDic = {}

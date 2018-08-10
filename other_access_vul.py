@@ -19,8 +19,10 @@ import os
 
 threadList = []
 resultList = []
-targetList = []
+targetList = [
+    "114.55.35.123:27017"]
 vulList = [
+
    {
       "port":"11211",
       "vul":"Memcache access vul",
@@ -38,7 +40,8 @@ vulList = [
       "vul":"Redis access vul",
       "key":"info\r\n\r\n",
       "flag":"redis",
-   }
+   },
+   
 ]
 
 def socketscan(target,i,timeout=5,verbose=False):
@@ -62,6 +65,7 @@ def socketscan(target,i,timeout=5,verbose=False):
            try:
                s.sendall(vul['key'])
                message = s.recv(1024)
+               
                #print message
                dic['message'] = message[0:100] + '\r\n'
                if vul['flag'] in message:

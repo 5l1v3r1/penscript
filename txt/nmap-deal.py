@@ -92,7 +92,10 @@ def deal(filename,xml):
                 port_id = port.attrib.get('portid')
                 port_protocol = port.attrib.get('protocol')
                 port_state = port.find('state').attrib.get('state')
-                port_service = port.find('service').attrib.get('name')
+                try:
+                    port_service = port.find('service').attrib.get('name')
+                except :
+                    port_service = "None"
                 infoDic = {"port":port_id,"status":port_state,"server":port_service,"other":port_protocol}
                 infoLit.append(infoDic)
             resDic = {"host":host_id,"info":infoLit}

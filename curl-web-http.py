@@ -7,9 +7,11 @@ import argparse
 import sys 
 import os
 import platform
+import chardet
 from bs4 import BeautifulSoup
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+type=sys.getfilesystemencoding()
 #reload(sys)
 #sys.setdefaultencoding('utf-8')
 '''
@@ -29,12 +31,14 @@ targetList = []
 resultDic = {}
 threadList = []
 resultList = []
-def _curl(target,i,timeout=3):
+def _curl(target,i,timeout=3,searchList=[]):
     dic = {}
-    dic['id'] = str(i) 
+    dic['id'] = str(i)
+    dic['search'] = []
     dic['host'] = target.split(':')[0].strip('https://').strip('http://')
     url = target.strip(' ')
     try:
+        
         result = requests.get(url, timeout=int(timeout),verify=False)
         soup = BeautifulSoup(result.text)
         dic['target'] = url
@@ -45,7 +49,7 @@ def _curl(target,i,timeout=3):
         content =  result.text
         for searchkey in searchList:
             if searchkey in mytitle.encode(result.encoding).decode('utf-8').encode(type) or searchkey in content.encode(result.encoding).decode('utf-8').encode(type):
-                # print searchkey,mytitle.encode(result.encoding).decode('utf-8').encode(type)
+                #print searchkey,mytitle.encode(result.encoding).decode('utf-8').encode(type)
                 dic['search'].append(searchkey)
         if mytitle == None or mytitle =='':
             dic['title'] = "None Title"
@@ -65,13 +69,17 @@ def _curl(target,i,timeout=3):
         dic['head_allow'] = "Not Allow"
     return dic
 
-def curl(threadId,timeout,threadNum,verbose):
+def curl(threadId,timeout,threadNum,verbose,searchList):
     for i in xrange(threadId,len(targetList),threadNum):
-        dic = _curl(targetList[i],i,timeout)
+        dic = _curl(targetList[i],i,timeout,searchList)
         resultList.append(dic)
         if verbose and  dic['status'] !="0" :
+            if chardet.detect(dic['title'])['encoding'].lower()=='utf-8':    
+                title = dic['title'].decode('utf-8').encode(type)
+            else:
+                title =  dic['title']
             try:
-                print "[%s] %s - %s - %s - %s\r\n" % (dic['id'],dic['target'],dic['status'],dic['title'].decode('utf-8').encode(type),','.join(dic['search'])),
+                print "[%s] %s - %s - %s - %s\r\n" % (dic['id'],dic['target'],dic['status'],title,','.join(dic['search'])),
             except:
                 print "[%s] %s - %s - %s - %s\r\n" % (dic['id'],dic['target'],dic['status'],"Title Code Error",','.join(dic['search'])),
 def scan(threadNum,timeout,verbose,searchList):
@@ -89,31 +97,40 @@ def printlog(key,out):
     print "[.] Start to output!"
     resList =  sorted(resultList,key = lambda e:e.__getitem__(key))
     temp = "NoNasdon!asd32@NoneNone"
+    
     if out!=None:
         with open(out,'wb') as f :
             for value in resList:
+                if chardet.detect(value['title'])['encoding'].lower()=='utf-8':    
+                    title = value['title'].decode('utf-8').encode(type)
+                else:
+                    title =  value['title']
                 if temp != value[key] and key != 'id' :
                     try:
-                        f.write("\r\n["+value[key].decode('utf-8').encode(type)+"]\r\n")
+                        f.write("\r\n["+title+"]\r\n")
                     except:
                         f.write("\r\n[Title Code Error]\r\n")
                 try:
-                    f.write("[%s] %s - %s - %s - %s\r\n" % (value['status'],value['target'],value['head_allow'],value['title'].decode('utf-8').encode(type),','.join(value['search'])))
+                    f.write("[%s] [%s] %s - %s - %s - %s\r\n" % (value['id'],value['status'],value['target'],value['head_allow'],title,','.join(value['search'])))
                 except:                
-                    f.write("[%s] %s - %s - %s - %s\r\n" % (value['status'],value['target'],value['head_allow'],"[Title Code Error]",','.join(value['search'])))
+                    f.write("[%s] [%s] %s - %s - %s - %s\r\n" % (value['id'],value['status'],value['target'],value['head_allow'],"[Title Code Error]",','.join(value['search'])))
                 temp = value[key]
         print "[.] Save result into "+ out + "!"
     else:
         for value in resList:
+            if chardet.detect(value['title'])['encoding'].lower()=='utf-8':    
+                title = value['title'].decode('utf-8').encode(type)
+            else:
+                title =  value['title']
             if temp != value[key] and key != 'id' :
                 try:
-                    print "\r\n["+value[key].decode('utf-8').encode(type)+"]"
+                    print "\r\n["+title+"]"
                 except:
                     print "\r\n[Title Code Error]"
             try:
-                print "[%s] %s - %s - %s - %s\r\n" % (value['status'],value['target'],value['head_allow'],value['title'].decode('utf-8').encode(type),','.join(value['search'])),
+                print "[%s] [%s] %s - %s - %s - %s\r\n" % (value['id'],value['status'],value['target'],value['head_allow'],title,','.join(value['search'])),
             except :
-                print "[%s] %s - %s  - %s - %s\r\n" % (value['status'],value['target'],value['head_allow'],"[Title Code Error]",','.join(value['search'])),
+                print "[%s] [%s] %s - %s  - %s - %s\r\n" % (value['id'],value['status'],value['target'],value['head_allow'],"[Title Code Error]",','.join(value['search'])),
             temp = value[key]
     print "[.] End output!"
     print "======================================================="
