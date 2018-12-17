@@ -16,7 +16,8 @@ from bs4 import BeautifulSoup
 '''
 
 targetList = [
-"111.198.162.44",
+"58.211.137.139",
+"www.seebug.org"
 ]
 
 resultDic = {}
@@ -40,7 +41,7 @@ def initdic(target,i):
     dic['domain'] = []
     dic['ICP']= []
     temptext =  re.search(r'(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|[0-9])(?:\.(?:25[0-5]|2[0-4]\d|1\d{2}|[1-9]\d|[0-9])){3}',target)
-    if temptext == None:
+    if temptext != None:
         dic['domain'].append(target)
         dic['flag'] = True
     return dic
@@ -49,11 +50,14 @@ def byaizhan(target,dic,timeout=3):
     for j in range(3):
         try:
             url = "https://dns.aizhan.com/" + target.strip(' ')+"/"
+            
             result = requests.get(url, headers = headers, timeout=int(timeout))
             soup = BeautifulSoup(result.text)
             alist = soup.find_all("td", class_="domain")
+            
             for i in xrange(1,len(alist)) :
                 mydomain = alist[i].find("a").get_text()
+                print mydomain
                 if mydomain not in dic['domain']:
                     dic['domain'].append(mydomain)     
             dic['aizhan'] = True
@@ -73,6 +77,7 @@ def bychinaz(target,dic,timeout=3):
             ul =  soup.find(id="ResultListWrap")
             for div in  soup.find_all("div", class_="w30-0 overhid"):
                 mydomain = div.find("a").get_text()
+                print mydomain
                 if mydomain not in dic['domain']:
                     dic['domain'].append(mydomain)
             dic['chinaz'] = True
@@ -93,6 +98,7 @@ def by114best(target,dic,timeout=3):
             div =  soup.find(id="rl")
             for span in div.find_all('span'):
                 mydomain = span.get_text().replace(" ","").replace("\r","").replace("\n","")
+                print mydomain
                 if mydomain not in dic['domain']:
                     dic['domain'].append(mydomain)
             dic['114best'] = True
@@ -185,6 +191,7 @@ def ICPbybeianbeian(domain,dic,timeout=3):
 def _curl(target,i,timeout=3,mode="DI"):
     dic = initdic(target,i)
     if "D" in mode and dic['flag'] :
+        
         dic = byaizhan(target,dic,timeout)
         dic = bychinaz(target,dic,timeout)
         dic = by114best(target,dic,timeout)

@@ -1,0 +1,86 @@
+
+C:/Program Files/Apache Group/Apache/apache.conf
+C:/Program Files/Apache Group/Apache/apache2.conf
+C:/Program Files/Apache Group/Apache/conf/apache.conf
+C:/Program Files/Apache Group/Apache/conf/apache2.conf
+C:/Program Files/Apache Group/Apache/conf/httpd.conf
+C:/Program Files/Apache Group/Apache/logs/access.log
+C:/Program Files/Apache Group/Apache/logs/error.log
+C:/Program Files/Apache Group/Apache2/conf/apache.conf
+C:/Program Files/Apache Group/Apache2/conf/apache2.conf
+C:/Program Files/Apache Group/Apache2/conf/httpd.conf
+C:/Program Files/Apache Software Foundation/Apache2.2/conf/httpd.conf
+C:/Program Files/Apache Software Foundation/Apache2.2/logs/access.log
+C:/Program Files/Apache Software Foundation/Apache2.2/logs/error.log
+C:/Program Files/MySQL/MySQL Server 5.0/data/mysql-bin.index
+C:/Program Files/MySQL/MySQL Server 5.0/data/mysql-bin.log
+C:/Program Files/MySQL/MySQL Server 5.0/data/mysql.err
+C:/Program Files/MySQL/MySQL Server 5.0/data/mysql.log
+C:/Program Files/MySQL/MySQL Server 5.0/data/{HOST}.err
+C:/Program Files/MySQL/MySQL Server 5.0/my.cnf
+C:/Program Files/MySQL/MySQL Server 5.0/my.ini
+C:/Program Files/MySQL/data/mysql-bin.index
+C:/Program Files/MySQL/data/mysql-bin.log
+C:/Program Files/MySQL/data/mysql.err
+C:/Program Files/MySQL/data/mysql.log
+C:/Program Files/MySQL/data/{HOST}.err
+C:/Program Files/MySQL/my.cnf
+C:/Program Files/MySQL/my.ini
+C:/Program Files/PostgreSQL/8.3/data/pg_hba.conf
+C:/Program Files/PostgreSQL/8.3/data/pg_ident.conf
+C:/Program Files/PostgreSQL/8.3/data/postgresql.conf
+C:/Program Files/PostgreSQL/8.4/data/pg_hba.conf
+C:/Program Files/PostgreSQL/8.4/data/pg_ident.conf
+C:/Program Files/PostgreSQL/8.4/data/postgresql.conf
+C:/Program Files/PostgreSQL/9.0/data/pg_hba.conf
+C:/Program Files/PostgreSQL/9.0/data/pg_ident.conf
+C:/Program Files/PostgreSQL/9.0/data/postgresql.conf
+C:/Program Files/PostgreSQL/9.1/data/pg_hba.conf
+C:/Program Files/PostgreSQL/9.1/data/pg_ident.conf
+C:/Program Files/PostgreSQL/9.1/data/postgresql.conf
+C:/Program Files/Vidalia Bundle/Polipo/polipo.conf
+C:/Program Files/xampp/apache/conf/apache.conf
+C:/Program Files/xampp/apache/conf/apache2.conf
+C:/Program Files/xampp/apache/conf/httpd.conf
+C:/WINDOWS/Debug/NetSetup.LOG
+C:/WINDOWS/ODBC.INI
+C:/WINDOWS/WindowsUpdate.log
+C:/WINDOWS/comsetup.log
+C:/WINDOWS/repair/setup.log
+C:/WINDOWS/setupact.log
+C:/WINDOWS/setupapi.log
+C:/WINDOWS/setuperr.log
+C:/WINDOWS/system32/Macromed/Flash/FlashInstall.log
+C:/WINDOWS/system32/Macromed/Flash/install.log
+C:/WINDOWS/system32/drivers/etc/hosts
+C:/WINDOWS/system32/drivers/etc/lmhosts.sam
+C:/WINDOWS/system32/drivers/etc/networks
+C:/WINDOWS/system32/drivers/etc/protocol
+C:/WINDOWS/system32/drivers/etc/services
+C:/WINDOWS/system32/logfiles/Firewall/pfirewall.log
+C:/WINDOWS/system32/logfiles/Firewall/pfirewall.log.old
+C:/WINDOWS/system32/logfiles/SMTPSVC
+C:/WINDOWS/system32/logfiles/SMTPSVC1
+C:/WINDOWS/system32/logfiles/SMTPSVC2
+C:/WINDOWS/system32/logfiles/SMTPSVC3
+C:/WINDOWS/system32/logfiles/SMTPSVC4
+C:/WINDOWS/system32/logfiles/SMTPSVC5
+C:/WINDOWS/system32/logfiles/W3SVC/inetsvn1.log
+C:/WINDOWS/system32/logfiles/W3SVC1/inetsvn1.log
+C:/WINDOWS/system32/logfiles/W3SVC2/inetsvn1.log
+C:/WINDOWS/system32/logfiles/W3SVC3/inetsvn1.log
+C:/WINDOWS/updspapi.log
+C:/WINDOWS/wmsetup.log
+C:/WINNT/system32/logfiles/Firewall/pfirewall.log
+C:/WINNT/system32/logfiles/Firewall/pfirewall.log.old
+C:/WINNT/system32/logfiles/SMTPSVC
+C:/WINNT/system32/logfiles/SMTPSVC1
+C:/WINNT/system32/logfiles/SMTPSVC2
+C:/WINNT/system32/logfiles/SMTPSVC3
+C:/WINNT/system32/logfiles/SMTPSVC4
+C:/WINNT/system32/logfiles/SMTPSVC5
+C:/WINNT/system32/logfiles/W3SVC/inetsvn1.log
+C:/WINNT/system32/logfiles/W3SVC1/inetsvn1.log
+C:/WINNT/system32/logfiles/W3SVC2/inetsvn1.log
+C:/WINNT/system32/logfiles/W3SVC3/inetsvn1.log
+C:/boot.ini
